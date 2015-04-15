@@ -25,97 +25,43 @@
   <div class="container">
     <h1>All Pennies</h1>
     <p><em><a href="https://docs.google.com/a/github.com/spreadsheet/ccc?key=0Ao5u1U6KYND7dGN5QngweVJUWE16bTRob0d2a3dCbnc&usp=drive_web#gid=0" target="_blank">spreadsheet</a></em><p>
-    <input id="fullTableFilter" type="text" placeholder="filter by.."></input>
+    <input id="fullTableFilter" type="text" placeholder="Select Office"></input>
     <div id="fullTable"></div>
-    <h1>California Pennies</h1>
-    <input id="calFilter" type="text" placeholder="filter by.."></input>
+    <h1>second spreadhseet</h1>
+    <input id="second" type="text" placeholder="filter by.."></input>
     <div id="calTable"></div>
-    <h1>Pretty Pennies</h1>
-    <div id="photogrid"></div>
-    <p><em><a onClick='window.location="view-source:" + window.location.href'>View Source</a> // <a href="../docs/sheetsee-tables.html">View Documentation</a></em></p>
-
-    <footer>
-      <h4 id="getting-started">Getting Started</h4>
-      <ul>
-        <li><a href="../docs/about.html">About Sheetsee</a></li>
-        <li><a href="../docs/building.html">Building Sheetsee</a></li>
-        <li><a href="../docs/basics.html">Basics</a></li>
-      </ul>
-      <h4 id="ideas">Ideas</h4>
-      <ul>
-        <li><a href="../docs/fork-n-go.html">Fork-n-Go</a></li>
-        <li><a href="../docs/tips.html">Tips!</a></li>
-        <li><a href="../docs/custom-charts.html">Custom charts</a></li>
-      </ul>
-      <h4>Demos</h4>
-      <ul>
-        <li><a href="./demo-table.html">Table Demo</a></li>
-        <li><a href="./demo-map.html">Map Demo</a></li>
-        <li><a href="./demo-chart.html">Chart Demo</a></li>
-      </ul>
-      <h4 id="use">Use</h4>
-      <ul>
-        <li><a href="../docs/sheetsee-core.html">Sheetsee-core</a></li>
-        <li><a href="../docs/sheetsee-tables.html">Sheetsee-tables</a></li>
-        <li><a href="../docs/sheetsee-maps.html">Sheetsee-maps</a></li>
-        <li><a href="../docs/sheetsee-charts.html">Sheetsee-charts</a></li>
-      </ul>
-      <h4 id="use">Contact</h4>
-      <ul>
-        <li><a href="http://www.twitter.com/jllord">@jllord</a></li>
-        <li><a href="https://github.com/jlord/sheetsee.js/issues/new">File an issue</a></li>
-      </ul>
-      <h4><a class="home-link" href="http://jlord.github.io/sheetsee.js">Home Page</a></h4>
-    </footer>
-</div>
-
+    
+   
 <script id="fullTable_template" type="text/html">
   <table>
-    <tr><th class="tHeader">City</th><th class="tHeader">Place Name</th><th class="tHeader">Year</th><th class="tHeader">Image</th></tr>
+    <tr><th class="tHeader">Page</th><th class="tHeader">Bounce Rate</th><th class="tHeader">Page Views</th></tr>
       {{#rows}}
-        <tr><td>{{city}}</td><td>{{placename}}</td><td>{{year}}</td><td>{{image}}</td></tr>
+        <tr><td>{{page}}</td><td>{{bouncerate}}</td><td>{{pageviews}}</td></tr>
       {{/rows}}
   </table>
 </script>
 
-<script id="calTable_template" type="text/html">
+<script id="second" type="text/html">
   <table>
-    <tr><th class="tHeader">City</th><th class="tHeader">Place Name</th><th class="tHeader">Year</th><th class="tHeader">Image</th></tr>
+    <tr><th class="tHeader">Page</th><th class="tHeader">Bounce Rate</th><th class="tHeader">Page Views</th></tr>
       {{#rows}}
-        <tr><td>{{city}}</td><td>{{placename}}</td><td>{{year}}</td><td>{{image}}</td></tr>
+        <tr><td>{{here}}</td><td>{{there}}</td><td>{{okay}}</td></tr>
       {{/rows}}
   </table>
 </script>
 
-<script id="photogrid" type="text/html">
-  {{#rows}}
-    <div class=""><a href="{{photo-url}}" target="_blank"><img class="photo" src="{{photo-url}}"  alt="name"></a></div>
-  {{/rows}}
-</script>
 
 <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', function() {
-    var URL = "0Ao5u1U6KYND7dGN5QngweVJUWE16bTRob0d2a3dCbnc"
+    var URL = "1-pmHQ168odxWDIFCtdEArNGIY5H4KD1WIFO_uzww2yc"
     Tabletop.init( { key: URL, callback: showInfo, simpleSheet: true } )
   })
 
   function showInfo(data) {
     var tableOptions = {"data": data
-    , "pagination": 10, "tableDiv": "#fullTable", "filterDiv": "#fullTableFilter"}
+    , "pagination": 100, "tableDiv": "#fullTable", "filterDiv": "#fullTableFilter"}
     Sheetsee.makeTable(tableOptions)
     Sheetsee.initiateTableFilter(tableOptions)
-
-    var california = Sheetsee.getKeyword(data, "california")
-    var calOptions = { "data": california,
-                       "pagination": 5,
-                       "tableDiv": "#calTable",
-                       "filterDiv": "#calFilter"
-                     }
-    Sheetsee.makeTable(calOptions)
-    Sheetsee.initiateTableFilter(calOptions)
-
-    var html = Sheetsee.ich.photogrid({'rows': data})
-    $('#photogrid').html(html)
   }
 
 
